@@ -86,7 +86,7 @@ header ul.show {
 #menuToggle {
     display: none;
     margin-left: auto; /* 將按鈕推到最右 */
-    margin-right: 2rem; /* 與右邊留出距離 */
+    margin-right: 5vw; /* 與右邊留出距離 */
     line-height: 100px; 
     background: none;
     border: none;
@@ -448,6 +448,7 @@ header ul.show {
     #menuToggle {
         display: block; /* 顯示按鈕 */
         line-height: 70px;
+        margin-right: 5vw;
     }
 
     header ul {
@@ -464,7 +465,9 @@ header ul.show {
 
     }
 
-    h1{
+    header h1{
+        color: aliceblue;
+        font-weight: bold;
         line-height: 70px;
         font-size: 20px;
     }

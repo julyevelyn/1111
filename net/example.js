@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
     /////////////////////////////////////////////////////////////////////header////////////////////////////////////////////////////////////////////////////////////////////
 
     // 函数封装动画逻辑
+
     function initAnimations() {
-        if (window.innerWidth > 700) {
             gsap.to("header", {
                 scrollTrigger: {
                     trigger: ".title",
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /////////////////////////////////////////////////////////////////////me////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    const timeline = gsap.timeline({
+    gsap.timeline({
         scrollTrigger: {
             trigger: ".me", // 设置滚动触发点
             start: "top top", // 动画从 `.me` 顶部与视口顶部对齐开始
@@ -372,91 +372,7 @@ document.addEventListener("DOMContentLoaded", function () {
             duration: 0.8
         });
 
-    /////////////////////////////////////////////////////////////////////影片動畫////////////////////////////////////////////////////////////////////////////////////////////
-
-// 初始化动画
-initAnimations();
-
-// 监听窗口调整大小事件，重新初始化动画
-window.addEventListener("resize", () => {
-    // 在重新初始化前移除所有 ScrollTrigger
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    initAnimations();
 });
-
-// 确保视频加载完成后，可以播放
-video.addEventListener("canplay", () => {
-    video.currentTime = 0;
-    video.pause();
-});
-
-// 在视频加载时隐藏控制器
-video.removeAttribute("controls");
-
-// 避免未定义的 `videoElement` 报错
-video.addEventListener("ended", () => {
-    video.controls = false; // 隐藏控制器
-});
-
-window.addEventListener("load", () => {
-    video.muted = true; // 确保静音，符合 Chrome 自动播放策略
-    video.currentTime = 0; // 视频从头开始
-    video.pause(); // 确保初始状态暂停
-});
-
-// 初始化 ScrollTrigger
-ScrollTrigger.create({
-    trigger: ".w",
-    start: "top 1%",
-    end: "bottom bottom",
-    scrub: true,
-    markers: false,
-    onEnter: () => {
-        if (!isPlaying && video.readyState >= 1) { // 如果视频未播放且已准备好
-            video.play()
-                .then(() => {
-                    isPlaying = true; // 播放成功后标记状态
-                })
-                .catch((error) => {
-                    console.error("Video play was interrupted:", error);
-                });
-        }
-    },
-    onLeave: () => {
-        if (isPlaying) { // 如果视频正在播放
-            video.pause();
-            isPlaying = false; // 更新状态
-        }
-    },
-    onLeaveBack: () => {
-        if (isPlaying) { // 如果视频正在播放
-            video.pause();
-            isPlaying = false; // 更新状态
-        }
-    },
-});
-
-// 监听滚动事件，确保在返回页面时播放视频
-ScrollTrigger.create({
-    trigger: ".w",   // 再次使用 .title 区域作为触发器
-    start: "top 5%",     // 当滚动到页面的 5% 位置时触发
-    end: "bottom bottom",
-    markers: false,
-    onEnterBack: () => {
-        if (!isPlaying && video.readyState >= 1) { // 如果视频未播放且已准备好
-            video.play()
-                .then(() => {
-                    isPlaying = true; // 播放成功后标记状态
-                })
-                .catch((error) => {
-                    console.error("Video play was interrupted:", error);
-                });
-        }
-    }
-});
-
-
-}});
 
 
 
