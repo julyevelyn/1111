@@ -228,6 +228,7 @@
         position: fixed;
         backdrop-filter: blur(10px);
         height: 70px;
+        z-index: 100;
     }
 
     #menuToggle {
@@ -250,7 +251,7 @@
 
     h1 {
         line-height: 70px;
-        font-size: 20px;
+        font-size: 30px;
     }
 
     header ul li {

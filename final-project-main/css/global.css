@@ -38,7 +38,7 @@ header nav {
     position: fixed;
     height: 100px;
     width: 100vw;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     background-color: #292929d2;
     backdrop-filter: blur(10px); /* 模糊背景 */
     z-index: 100; /*always on top layer*/
