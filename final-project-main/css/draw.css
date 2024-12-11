@@ -7,19 +7,58 @@
 }
 
 /*///////////////////////////////////////////////////////////////////////work///////////////////////////////////////////////////////////////////////////////////////*/
-
-.work {
+/* App容器 */
+#app {
     position: relative;
-    height: 100vh;
     width: 100%;
-    background-color: #000000;
+    height: 100vh;
 }
 
-#right {
+/* 每個作品區域 */
+.work {
+    border: 2px solid #ffffff;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    background-color: #000;
+}
+
+.even {
+    flex-direction: row;
+    .gradient-overlay2 {
+        position: absolute;
+        width: 80%;
+        height: 100%;
+        background: linear-gradient(
+            to right,
+            rgb(1, 4, 17) 50%,
+            rgba(3, 13, 49, 0) 70%
+        );
+    }
+}
+
+/* 奇數 */
+.odd {
+    flex-direction: row-reverse;
+    .gradient-overlay2 {
+        position: absolute;
+        width: 80%;
+        height: 100%;
+        background: linear-gradient(
+            to left,
+            rgb(1, 4, 17) 50%,
+            rgba(3, 13, 49, 0) 70%
+        );
+    }
+}
+
+/* #right {
     height: inherit;
     width: inherit;
     display: flex;
-    flex-direction: row; /*橫向左到右*/
+    flex-direction: row; 
     align-items: center;
     .gradient-overlay2 {
         position: absolute;
@@ -37,7 +76,7 @@
     height: inherit;
     width: inherit;
     display: flex;
-    flex-direction: row-reverse; /*橫向右到左*/
+    flex-direction: row-reverse;
     align-items: center;
     .gradient-overlay2 {
         position: absolute;
@@ -49,7 +88,7 @@
             rgba(3, 13, 49, 0) 70%
         );
     }
-}
+} */
 
 .text {
     display: flex;

@@ -36,7 +36,45 @@
                 </div>
                 <img id="img" src="../img/兵長賀圖.jpg" alt="兵長賀圖" />
             </section>
-
+            <section id="app">
+                <div
+                    v-for="(work, index) in works"
+                    :key="work.title"
+                    :class="['work', index % 2 === 0 ? 'even' : 'odd']"
+                >
+                    <!--偶數: 文字在左，圖片在右 -->
+                    <template v-if="index % 2 === 0">
+                        <div class="gradient-overlay2"></div>
+                        <div class="text">
+                            <h3>{{ work.title }}</h3>
+                            <h4>{{ work.description }}</h4>
+                        </div>
+                        <div class="box">
+                            <img
+                                :src="work.image"
+                                :alt="work.title"
+                                class="img-fluid"
+                            />
+                        </div>
+                    </template>
+                    <!--奇數: 圖片在左，文字在右 -->
+                    <template v-else>
+                        <div class="gradient-overlay2"></div>
+                        <div class="box">
+                            <img
+                                :src="work.image"
+                                :alt="work.title"
+                                class="img-fluid"
+                            />
+                        </div>
+                        <div class="text">
+                            <h3>{{ work.title }}</h3>
+                            <h4>{{ work.description }}</h4>
+                        </div>
+                    </template>
+                </div>
+            </section>
+            <!-- 
             <section class="work">
                 <div id="right">
                     <div class="gradient-overlay2"></div>
@@ -65,7 +103,7 @@
                         <img src="../img/天秤宮.jpg" alt="天秤宮" />
                     </div>
                 </div>
-            </section>
+            </section> -->
         </main>
         <button id="backToTop">back to top ↑</button>
     </body>
