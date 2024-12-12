@@ -8,6 +8,40 @@ document.addEventListener("DOMContentLoaded", function () {
     const menu = document.querySelector(".menu");
     gsap.registerPlugin(ScrollTrigger);
 
+    // **menu上移動畫** //
+    if (window.innerWidth > 700) {
+        let nav = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".title",
+                start: "+=350%",
+                scrub: 1.5,
+                markers: false
+            },
+
+        });
+        nav
+            .to("nav", {
+                y: -20,
+                duration: 4,
+                ease: "power1.inOut"
+            })
+            .to(
+                "nav h1",
+                {
+                    yPercent: 10,
+                    duration: 4
+                }, "<")
+            .to(
+                "nav ul",
+                {
+                    yPercent: 10,
+                    duration: 4
+                }, "<");
+    } else {
+        gsap.set("nav", { clearProps: "all" }); // 移除 GSAP 應用的動畫屬性
+    }
+
+
     // **menu** //
     let isOpen = false;
     gsap.set(menu, { height: 0, opacity: 0 });
@@ -237,4 +271,4 @@ document.addEventListener("DOMContentLoaded", function () {
             opacity: 0,
         });
     });
-});
+})

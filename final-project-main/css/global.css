@@ -55,13 +55,13 @@ nav h1 {
 nav ul {
     line-height: 100px;
     text-align: center;
-    width: 80%;
+    width: 100%;
     margin: 0 auto; /*水平置中*/
 }
 
 nav li {
     display: inline; /*橫式排列*/
-    margin-right: 2vw; /*vw是整體視窗寬度的百分比，會依據縮放自動變化*/
+    margin-right: 45px;
 }
 
 h1 a:hover {
@@ -146,47 +146,43 @@ main {
 
 /* media */
 @media (max-width: 700px) {
-    header {
-        position: fixed;
-        backdrop-filter: blur(10px);
-        height: 70px;
-        z-index: 100;
-    }
-
     #menuToggle {
         display: block; /* 顯示按鈕 */
         line-height: 70px;
     }
 
-    header ul {
+    nav ul {
         position: fixed;
         display: none; /* 初始隱藏 */
         position: absolute;
         top: 100%;
-        right: 0;
         background: #444;
         flex-direction: column; /* 改為垂直顯示 */
-        gap: 0;
         width: 100%; /* 滿寬 */
         text-align: right;
     }
 
-    h1 {
-        line-height: 70px;
+    nav h1 {
         font-size: 30px;
     }
 
-    header ul li {
+    nav li {
+        display: flex;
+        width: 100%;
         padding: 0.5rem;
+        justify-content: flex-end; /* 讓內容靠右對齊 */
+        margin-right: 10vw;
     }
 
-    header ul li a {
+    nav ul li a {
+        margin-right: 20px;
+        width: 150px;
         display: block;
         line-height: 50px;
     }
 
     /* 顯示選單時 */
-    header ul.show {
+    nav ul.show {
         display: flex;
     }
 }
