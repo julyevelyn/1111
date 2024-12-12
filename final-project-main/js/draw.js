@@ -1,6 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
     const backToTopButton = document.getElementById("backToTop");
+    const menuToggle = document.getElementById("menuToggle");
+    const menu = document.querySelector(".menu");
     gsap.registerPlugin(ScrollTrigger);
+
+    // **menu** //
+    let isOpen = false;
+    gsap.set(menu, { height: 0, opacity: 0 });
+
+    menuToggle.addEventListener("click", () => {
+        menu.classList.toggle("show");
+        if (isOpen) {
+            gsap.to(menu, {
+                height: 0,
+                opacity: 0,
+                y: -20, // 添加向上的动画
+                duration: 0.3,
+                ease: "power1.out",
+            });
+        } else {
+            gsap.fromTo(
+                menu,
+                { height: 0, opacity: 0, y: -20 }, // 初始位置稍微向上
+                {
+                    height: "auto",
+                    opacity: 1,
+                    y: 0, // 回到原位
+                    duration: 0.3,
+                    ease: "power1.in",
+                }
+            );
+        }
+        isOpen = !isOpen;
+    });
 
     // **title** //
     let title = gsap.timeline({

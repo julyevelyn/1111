@@ -65,7 +65,22 @@ nav li {
 }
 
 h1 a:hover {
-    color: aliceblue;
+    color: rgb(202, 201, 141);
+}
+/* 下拉按鈕初始隱藏 */
+#menuToggle {
+    display: none;
+    margin-left: auto; /* 將按鈕推到最右 */
+    margin-right: 2rem; /* 與右邊留出距離 */
+    line-height: 100px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.menu {
+    display: none;
 }
 
 /* main */
@@ -130,3 +145,48 @@ main {
 }
 
 /* media */
+@media (max-width: 700px) {
+    header {
+        position: fixed;
+        backdrop-filter: blur(10px);
+        height: 70px;
+        z-index: 100;
+    }
+
+    #menuToggle {
+        display: block; /* 顯示按鈕 */
+        line-height: 70px;
+    }
+
+    header ul {
+        position: fixed;
+        display: none; /* 初始隱藏 */
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #444;
+        flex-direction: column; /* 改為垂直顯示 */
+        gap: 0;
+        width: 100%; /* 滿寬 */
+        text-align: right;
+    }
+
+    h1 {
+        line-height: 70px;
+        font-size: 30px;
+    }
+
+    header ul li {
+        padding: 0.5rem;
+    }
+
+    header ul li a {
+        display: block;
+        line-height: 50px;
+    }
+
+    /* 顯示選單時 */
+    header ul.show {
+        display: flex;
+    }
+}
