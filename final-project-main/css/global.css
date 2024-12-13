@@ -145,7 +145,7 @@ main {
 }
 
 /* media */
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
     #menuToggle {
         display: block; /* 顯示按鈕 */
         line-height: 70px;

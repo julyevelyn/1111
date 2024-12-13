@@ -102,9 +102,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return {
                 works: [
                     {
-                        title: "天秤宮",
-                        description: "高中時畫的作品，第一次嘗試複雜的背景繪製",
-                        image: "../img/天秤宮.jpg"
+                        title: "武士刀katana",
+                        description: "第一次用maya製作武器，花了很多時間研究製作武士刀模型的教程，也嘗試用maya貼膜貼出武士刀破舊的感覺",
+                        image: "/final-project-main/img/武器彩圖.jpg"
                     },
                     {
                         title: "Maria",

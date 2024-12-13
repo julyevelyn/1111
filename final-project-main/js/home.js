@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(ScrollTrigger);
 
     // **menu上移動畫** //
-    if (window.innerWidth > 700) {
+    if (window.innerWidth > 1000) {
         let nav = gsap.timeline({
             scrollTrigger: {
                 trigger: ".title",
