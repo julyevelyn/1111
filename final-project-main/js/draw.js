@@ -97,45 +97,62 @@ document.addEventListener("DOMContentLoaded", function () {
         ); //delay (seconds)
 
     // **work** //
-    app = Vue.createApp({
+    const app = Vue.createApp({
         data() {
             return {
-                works: [
-                    {
-                        title: "天秤宮",
-                        description: "高中時畫的作品，第一次嘗試複雜的背景繪製",
-                        image: "../img/天秤宮.jpg"
-                    },
-                    {
-                        title: "Maria",
-                        description: "最近很喜歡的遊戲角色，又颯又美",
-                        image: "/final-project-main/img/maria.JPG"
-                    },
-                    {
-                        title: "Mercy",
-                        description: "有一款叫overwatch的遊戲裡，我最喜歡的角色",
-                        image: "/final-project-main/img/天使.JPG"
-                    },
-                    {
-                        title: "龍年賀圖",
-                        description: "第一次挑戰畫寫實的龍，花了很多時間研究跟摸索",
-                        image: "/final-project-main/img/龍.JPG"
-                    },
-                    {
-                        title: "風信與慕情",
-                        description: "這是我很喜歡的一對小說角色",
-                        image: "/final-project-main/img/風情.JPG"
-                    },
-                    {
-                        title: "兵長",
-                        description: "之前很喜歡的一個動漫角色，我花了很多時間研究金屬的刻痕要怎麼繪製",
-                        image: "/final-project-main/img/兵長賀圖.jpg"
-                    },
-                ],
+                works: [], // 初始為空
             };
+        },
+        mounted() {
+            // 在組件掛載後請求後端 API
+            fetch("http://localhost:3000/api/works") // 這裡的 URL 對應後端路由
+                .then((response) => response.json())
+                .then((data) => {
+                    this.works = data; // 將獲取的資料賦值給 works
+                })
+                .catch((error) => console.error("Error fetching works:", error));
         },
     });
     app.mount("#app");
+    // app = Vue.createApp({
+    //     data() {
+    //         return {
+    //             works: [
+    //                 {
+    //                     title: "天秤宮",
+    //                     description: "高中時畫的作品，第一次嘗試複雜的背景繪製",
+    //                     image: "../img/天秤宮.jpg"
+    //                 },
+    //                 {
+    //                     title: "Maria",
+    //                     description: "最近很喜歡的遊戲角色，又颯又美",
+    //                     image: "/final-project-main/img/maria.JPG"
+    //                 },
+    //                 {
+    //                     title: "Mercy",
+    //                     description: "有一款叫overwatch的遊戲裡，我最喜歡的角色",
+    //                     image: "/final-project-main/img/天使.JPG"
+    //                 },
+    //                 {
+    //                     title: "龍年賀圖",
+    //                     description: "第一次挑戰畫寫實的龍，花了很多時間研究跟摸索",
+    //                     image: "/final-project-main/img/龍.JPG"
+    //                 },
+    //                 {
+    //                     title: "風信與慕情",
+    //                     description: "這是我很喜歡的一對小說角色",
+    //                     image: "/final-project-main/img/風情.JPG"
+    //                 },
+    //                 {
+    //                     title: "兵長",
+    //                     description: "之前很喜歡的一個動漫角色，我花了很多時間研究金屬的刻痕要怎麼繪製",
+    //                     image: "/final-project-main/img/兵長賀圖.jpg"
+    //                 },
+    //             ],
+    //         };
+    //     },
+    // });
+    // app.mount("#app");
 
     const works = document.querySelectorAll(".work");
     works.forEach((work) => {
