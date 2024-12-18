@@ -1,76 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const backToTopButton = document.getElementById("backToTop");
     const images = document.querySelectorAll(".box-img"); // 获取所有图片
     const prevButton = document.querySelector("#left"); // 左按钮
     const nextButton = document.querySelector("#right"); // 右按钮
     const video = document.getElementById("mp4");
-    const menuToggle = document.getElementById("menuToggle");
-    const menu = document.querySelector(".menu");
     gsap.registerPlugin(ScrollTrigger);
-
-    // **menu上移動畫** //
-    if (window.innerWidth > 1000) {
-        let nav = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".title",
-                start: "+=350%",
-                scrub: 1.5,
-                markers: false
-            },
-
-        });
-        nav
-            .to("nav", {
-                y: -20,
-                duration: 4,
-                ease: "power1.inOut"
-            })
-            .to(
-                "nav h1",
-                {
-                    yPercent: 10,
-                    duration: 4
-                }, "<")
-            .to(
-                "nav ul",
-                {
-                    yPercent: 10,
-                    duration: 4
-                }, "<");
-    } else {
-        gsap.set("nav", { clearProps: "all" }); // 移除 GSAP 應用的動畫屬性
-    }
-
-
-    // **menu** //
-    let isOpen = false;
-    gsap.set(menu, { height: 0, opacity: 0 });
-
-    menuToggle.addEventListener("click", () => {
-        menu.classList.toggle("show");
-        if (isOpen) {
-            gsap.to(menu, {
-                height: 0,
-                opacity: 0,
-                y: -20, // 添加向上的动画
-                duration: 0.3,
-                ease: "power1.out",
-            });
-        } else {
-            gsap.fromTo(
-                menu,
-                { height: 0, opacity: 0, y: -20 }, // 初始位置稍微向上
-                {
-                    height: "auto",
-                    opacity: 1,
-                    y: 0, // 回到原位
-                    duration: 0.3,
-                    ease: "power1.in",
-                }
-            );
-        }
-        isOpen = !isOpen;
-    });
 
     // **title** //
     let title = gsap.timeline({
@@ -124,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let me = gsap.timeline({
         scrollTrigger: {
             trigger: ".me", // 设置滚动触发点
-            start: "top +=100px", // 动画从 `.me` 顶部与视口顶部对齐开始
-            end: "+=250%", // 动画持续滚动 250% 的内容高度
+            start: "top +=80%", // 动画从 `.me` 顶部与视口顶部对齐开始
+            end: "+=40%", // 动画持续滚动 250% 的内容高度
             scrub: true, // 平滑滚动
             pin: true, // 固定 `.me` 元素
             pinSpacing: true, // 保留滚动占位
@@ -196,7 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let social = gsap.timeline({
         scrollTrigger: {
             trigger: ".social",
-            start: "top top+=50%",
+            start: "top top+=90%",
+            end: "top top+=90%",
             scrub: false,
             markers: false,
         },
@@ -238,37 +172,4 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             "<"
         );
-
-    // **backToTop** //
-    gsap.fromTo(
-        "#backToTop",
-        { opacity: 0, y: 0 },
-        {
-            opacity: 1,
-            y: -10,
-            ease: "power1.in",
-            scrollTrigger: {
-                trigger: ".title",
-                start: "bottom top",
-                markers: false,
-                toggleActions: "play none none reverse", // 切换回到顶部时，重置 opacity 和 y 值
-                onEnter: () => {
-                    document.querySelector("#backToTop").style.pointerEvents =
-                        "auto";
-                },
-                onLeaveBack: () => {
-                    document.querySelector("#backToTop").style.pointerEvents =
-                        "none";
-                },
-            },
-        }
-    );
-    // 点击按钮回到顶部
-    backToTopButton.addEventListener("click", function () {
-        window.scrollTo({
-            top: 0, // 滚动到顶部
-            behavior: "smooth", // 平滑滚动
-            opacity: 0,
-        });
-    });
-})
+});

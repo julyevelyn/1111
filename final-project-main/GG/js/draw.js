@@ -1,71 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const backToTopButton = document.getElementById("backToTop");
-    const menuToggle = document.getElementById("menuToggle");
-    const menu = document.querySelector(".menu");
     gsap.registerPlugin(ScrollTrigger);
-
-    // **menu上移動畫** //
-    if (window.innerWidth > 1000) {
-        let nav = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".title",
-                start: "bottom 0",
-                scrub: 1.5,
-                markers: false
-            },
-
-        });
-        nav
-            .to("nav", {
-                y: -20,
-                duration: 4,
-                ease: "power1.inOut"
-            })
-            .to(
-                "nav h1",
-                {
-                    yPercent: 10,
-                    duration: 4
-                }, "<")
-            .to(
-                "nav ul",
-                {
-                    yPercent: 10,
-                    duration: 4
-                }, "<");
-    } else {
-        gsap.set("nav", { clearProps: "all" }); // 移除 GSAP 應用的動畫屬性
-    }
-
-    // **menu** //
-    let isOpen = false;
-    gsap.set(menu, { height: 0, opacity: 0 });
-
-    menuToggle.addEventListener("click", () => {
-        menu.classList.toggle("show");
-        if (isOpen) {
-            gsap.to(menu, {
-                height: 0,
-                opacity: 0,
-                y: -20, // 添加向上的动画
-                duration: 0.3,
-                ease: "power1.out",
-            });
-        } else {
-            gsap.fromTo(
-                menu,
-                { height: 0, opacity: 0, y: -20 }, // 初始位置稍微向上
-                {
-                    height: "auto",
-                    opacity: 1,
-                    y: 0, // 回到原位
-                    duration: 0.3,
-                    ease: "power1.in",
-                }
-            );
-        }
-        isOpen = !isOpen;
-    });
 
     // **title** //
     let title = gsap.timeline({
@@ -97,97 +31,65 @@ document.addEventListener("DOMContentLoaded", function () {
         ); //delay (seconds)
 
     // **work** //
-    const app = Vue.createApp({
+    let app = Vue.createApp({
         data() {
             return {
                 works: [], // 初始為空
             };
         },
-        mounted() {
-            // 在組件掛載後請求後端 API
-            fetch("http://localhost:3000/api/works") // 這裡的 URL 對應後端路由
-                .then((response) => response.json())
-                .then((data) => {
-                    this.works = data; // 將獲取的資料賦值給 works
-                })
-                .catch((error) => console.error("Error fetching works:", error));
+    }).mount("#app");
+
+    $.ajax({
+        url: "/draw",
+        method: "get",
+        dataType: "json",
+        success: (result) => {
+            app.works = result; // 正確綁定資料
+            setTimeout(() => {
+                workAnimation();
+            }, 0);
+        },
+        error: (error) => {
+            console.error("Error fetching data:", error);
         },
     });
-    app.mount("#app");
-    // app = Vue.createApp({
-    //     data() {
-    //         return {
-    //             works: [
-    //                 {
-    //                     title: "天秤宮",
-    //                     description: "高中時畫的作品，第一次嘗試複雜的背景繪製",
-    //                     image: "../img/天秤宮.jpg"
-    //                 },
-    //                 {
-    //                     title: "Maria",
-    //                     description: "最近很喜歡的遊戲角色，又颯又美",
-    //                     image: "/final-project-main/img/maria.JPG"
-    //                 },
-    //                 {
-    //                     title: "Mercy",
-    //                     description: "有一款叫overwatch的遊戲裡，我最喜歡的角色",
-    //                     image: "/final-project-main/img/天使.JPG"
-    //                 },
-    //                 {
-    //                     title: "龍年賀圖",
-    //                     description: "第一次挑戰畫寫實的龍，花了很多時間研究跟摸索",
-    //                     image: "/final-project-main/img/龍.JPG"
-    //                 },
-    //                 {
-    //                     title: "風信與慕情",
-    //                     description: "這是我很喜歡的一對小說角色",
-    //                     image: "/final-project-main/img/風情.JPG"
-    //                 },
-    //                 {
-    //                     title: "兵長",
-    //                     description: "之前很喜歡的一個動漫角色，我花了很多時間研究金屬的刻痕要怎麼繪製",
-    //                     image: "/final-project-main/img/兵長賀圖.jpg"
-    //                 },
-    //             ],
-    //         };
-    //     },
-    // });
-    // app.mount("#app");
 
-    const works = document.querySelectorAll(".work");
-    works.forEach((work) => {
-        let timeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: work,
-                start: "top +=100px",
-                end: "+=30%",
-                scrub: true,
-                pin: true,
-                pinSpacing: true,
-                markers: true,
-            },
+    function workAnimation() {
+        const works = document.querySelectorAll(".work");
+        works.forEach((work) => {
+            let timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: work,
+                    start: "top +=60%",
+                    end: "top +=60%",
+                    scrub: false,
+                    // pin: true,
+                    // pinSpacing: true,
+                    markers: false,
+                },
+            });
+            timeline
+                .fromTo(work, { opacity: 0 }, { opacity: 1 })
+                .fromTo(
+                    work.querySelector(".gradient-overlay2"),
+                    { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
+                    { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
+                    "<"
+                )
+                .fromTo(
+                    work.querySelector(".text"),
+                    { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
+                    { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
+                    "<"
+                )
+                .fromTo(
+                    work.querySelector(".box"),
+                    { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
+                    { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
+                    "<"
+                );
         });
-        timeline
-            .fromTo(work, { opacity: 0 }, { opacity: 1 })
-            .fromTo(
-                work.querySelector(".gradient-overlay2"),
-                { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
-                { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
-                "<"
-            )
-            .fromTo(
-                work.querySelector(".text"),
-                { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
-                { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
-                "<"
-            )
-            .fromTo(
-                work.querySelector(".box"),
-                { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
-                { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
-                "<"
-            );
-    });
+    }
 
     // **backToTop** //
     gsap.fromTo(
@@ -222,4 +124,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
