@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <title>3D建模作品</title> -->
+        <!-- <title>手繪作品</title> -->
         <!-- gsap + ScrollTrigger -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
@@ -20,9 +20,9 @@
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <!-- Theme -->
         <link rel="stylesheet" href="../css/global.css" />
-        <link rel="stylesheet" href="../css/3D.css" />
+        <link rel="stylesheet" href="../css/animate.css" />
         <script src="../js/global.js"></script>
-        <script src="../js/3D.js"></script>
+        <script src="../js/animate.js"></script>
     </head>
     <body>
         <header>
@@ -69,9 +69,9 @@
         <main>
             <section class="title">
                 <div class="gradient-overlay">
-                    <h2>3D建模作品</h2>
+                    <h2>動畫作品</h2>
                 </div>
-                <img id="img" src="../img/兵長賀圖.jpg" alt="兵長賀圖" />
+                <img id="img" src="../img/小恐龍.jpg" alt="小恐龍" />
             </section>
             <section id="app">
                 <div
@@ -90,11 +90,18 @@
                         </div>
                         <div class="box-out">
                             <div class="box">
-                                <img
-                                    :src="work.image"
+                                <!-- 顯示 video -->
+                                <video
+                                    controls
+                                    class="video-fluid"
                                     :alt="work.title"
-                                    class="img-fluid"
-                                />
+                                >
+                                    <source
+                                        :src="work.video"
+                                        type="video/mp4"
+                                    />
+                                    您的瀏覽器不支持播放此視訊。
+                                </video>
                             </div>
                         </div>
                     </template>
@@ -109,11 +116,17 @@
                         </div>
                         <div class="box-out">
                             <div class="box">
-                                <img
-                                    :src="work.image"
+                                <video
+                                    controls
+                                    class="video-fluid"
                                     :alt="work.title"
-                                    class="img-fluid"
-                                />
+                                >
+                                    <source
+                                        :src="work.video"
+                                        type="video/mp4"
+                                    />
+                                    您的瀏覽器不支持播放此視訊。
+                                </video>
                             </div>
                         </div>
                     </template>

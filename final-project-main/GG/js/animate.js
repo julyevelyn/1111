@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }).mount("#app");
 
     $.ajax({
-        url: "/3D",
+        url: "/animate",
         method: "get",
         dataType: "json",
         success: (result) => {
@@ -116,4 +116,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
