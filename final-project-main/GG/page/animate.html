@@ -75,13 +75,17 @@
             </section>
             <section id="app">
                 <div
-                    v-for="(work, index) in works"
-                    :key="work.title"
-                    :class="['work', index % 2 === 0 ? 'even' : 'odd']"
+                    v-for="(group, groupIndex) in groupedWorks"
+                    :key="groupIndex"
+                    class="group"
                 >
-                    <!--偶數: 文字在左，圖片在右 -->
-                    <template v-if="index % 2 === 0">
-                        <!-- <div class="gradient-overlay2"></div> -->
+                    <div
+                        v-for="(work, index) in group"
+                        :key="work.title"
+                        class="work"
+                    ></div>
+                    <!-- 第一頁：排版 -->
+                    <template v-if="index === 0">
                         <div class="text">
                             <div class="inner">
                                 <h3>{{ work.title }}</h3>
@@ -90,28 +94,21 @@
                         </div>
                         <div class="box-out">
                             <div class="box">
-                                <!-- 顯示 video -->
-                                <video
-                                    controls
-                                    class="video-fluid"
-                                    :alt="work.title"
-                                >
-                                    <source
-                                        :src="work.video"
-                                        type="video/mp4"
+                                <div class="box">
+                                    <img
+                                        :src="work.image"
+                                        :alt="work.title"
+                                        class="img-fluid"
                                     />
-                                    您的瀏覽器不支持播放此視訊。
-                                </video>
+                                </div>
                             </div>
                         </div>
                     </template>
-                    <!--奇數: 圖片在左，文字在右 -->
-                    <template v-else>
-                        <!-- <div class="gradient-overlay2"></div> -->
+                    <!-- 第二頁：影片 -->
+                    <!-- <template v-else-if="index === 1">
                         <div class="text">
                             <div class="inner">
-                                <h3>{{ work.title }}</h3>
-                                <h4>{{ work.description }}</h4>
+                                <h3>{{ work.title2 }}</h3>
                             </div>
                         </div>
                         <div class="box-out">
@@ -129,7 +126,30 @@
                                 </video>
                             </div>
                         </div>
-                    </template>
+                    </template> -->
+                    <!-- 第三頁：圖片 -->
+                    <!-- <template v-else-if="index === 2">
+                        <div id="card">
+                            <div class="gallery-container"> -->
+                    <!-- 使用 v-for 動態渲染卡片 -->
+                    <!-- <div
+                                    v-for="item in gallery"
+                                    :key="item.id"
+                                    class="gallery-card"
+                                >
+                                    <img
+                                        :src="item.image_url"
+                                        :alt="item.title"
+                                        class="gallery-image"
+                                    />
+                                    <div class="gallery-text">
+                                        <h3>{{ item.title }}</h3>
+                                        <p>{{ item.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template> -->
                 </div>
             </section>
         </main>
