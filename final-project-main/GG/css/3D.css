@@ -43,6 +43,7 @@
 }
 
 .text {
+    /* border: 2pt solid #fff; */
     position: absolute;
     display: flex;
     margin: 80px;
@@ -59,12 +60,24 @@
     text-align: left;
     font-size: 80px;
     color: aliceblue;
+    -webkit-text-stroke: 0.5px black;
+}
+
+.inner h4 {
+    font-weight: 600;
+    -webkit-text-stroke: 0.5px black;
+}
+
+.box-out {
+    height: 100%;
+    width: 70%;
 }
 
 .box {
+    /* border: 2pt solid #fff; */
     margin: 50px;
     height: 75%;
-    max-width: 70%;
+    max-width: 100%;
 }
 
 .box .img-fluid {
