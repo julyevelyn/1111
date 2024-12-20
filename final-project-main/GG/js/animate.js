@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let app = Vue.createApp({
         data() {
             return {
-                works: [], // 初始為空
+                data: [], // 初始為空
             };
         },
     }).mount("#app");
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         method: "get",
         dataType: "json",
         success: (result) => {
-            app.works = result; // 正確綁定資料
+            this.data = result; // 正確綁定資料
             setTimeout(() => {
                 workAnimation();
             }, 0);

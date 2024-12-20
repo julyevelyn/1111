@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         method: "get",
         dataType: "json",
         success: (result) => {
-            app.works = result; // 正確綁定資料
+            app.works = result.sort((a, b) => { return a.order - b.order }); // 正確綁定資料
             setTimeout(() => {
                 workAnimation();
             }, 0);

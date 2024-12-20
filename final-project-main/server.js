@@ -35,7 +35,13 @@ animateDB.insert([
     // { order: 1, title: "塵沒", description: "高中畢製畫的動畫，也是我的動畫初體驗，除了學到畫動畫的流程與方式外，也學到如何與組員用良性的方式溝通", video: "../mp4/塵沒.mp4", },
     // { order: 2, title: "飢餓小恐龍", description: "大二首次嘗試自己畫動畫，因為沒有組員的幫助，因此要更精細的規劃工作流程，製作起來也更加辛苦", video: "../mp4/恐龍.mp4", },
     // { order: 3, title: "蔬菜大冒險", description: "第一次嘗試製作偶動畫，由於沒有任何經驗，因此前期重拍了很多次", video: "../mp4/偶動畫.mp4", },
-    { order: 1, title: "塵沒", description: "高中畢製畫的動畫，也是我的動畫初體驗，除了學到畫動畫的流程與方式外，也學到如何與組員用良性的方式溝通", image: "../img/天秤宮.jpg", title2: "作品內容", video: "../mp4/塵沒.mp4" },
+    { type: "work", title: "塵沒", description: "高中畢製畫的動畫，也是我的動畫初體驗，除了學到畫動畫的流程與方式外，也學到如何與組員用良性的方式溝通",VIDEO:"", image: "../img/天秤宮.jpg" },
+    { type: "work", title: "作品內容",description:"", video: "../mp4/塵沒.mp4" , image:[]},
+    { type: "gallery", TITLE:"",description:"", video:"", image: [
+        { id: 1, title: "角色色計圖", image_url: "../img/畢製設定.jpg" },
+        { id: 2, title: "海報原圖", image_url: "海報原圖.jpg" },
+        { id: 3, title: "畢製展覽", image_url: "畢製擺攤.jpg" },
+    ]},
 ])
 
 server.get("/draw", (req, res) => {

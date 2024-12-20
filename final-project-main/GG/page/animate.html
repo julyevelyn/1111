@@ -74,26 +74,27 @@
                 <img id="img" src="../img/小恐龍.jpg" alt="小恐龍" />
             </section>
             <section id="app">
+                <!-- 分頁迴圈 -->
                 <div
                     v-for="(group, groupIndex) in groupedWorks"
                     :key="groupIndex"
                     class="group"
                 >
-                    <div
-                        v-for="(work, index) in group"
-                        :key="work.title"
-                        class="work"
-                    ></div>
                     <!-- 第一頁：排版 -->
-                    <template v-if="index === 0">
-                        <div class="text">
-                            <div class="inner">
-                                <h3>{{ work.title }}</h3>
-                                <h4>{{ work.description }}</h4>
+                    <template v-if="groupIndex === 0">
+                        <div
+                            v-for="(work, index) in group"
+                            :key="work.title"
+                            class="work"
+                        >
+                            <div class="text">
+                                <div class="inner">
+                                    <h3>{{ work.title }}</h3>
+                                    <h4>{{ work.description }}</h4>
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="box-out">
-                            <div class="box">
+                            <div class="box-out">
                                 <div class="box">
                                     <img
                                         :src="work.image"
@@ -104,35 +105,43 @@
                             </div>
                         </div>
                     </template>
+
                     <!-- 第二頁：影片 -->
-                    <!-- <template v-else-if="index === 1">
-                        <div class="text">
-                            <div class="inner">
-                                <h3>{{ work.title2 }}</h3>
+                    <template v-else-if="groupIndex === 1">
+                        <div
+                            v-for="(work, index) in group"
+                            :key="work.title"
+                            class="work"
+                        >
+                            <div class="text">
+                                <div class="inner">
+                                    <h3>{{ work.title}}</h3>
+                                </div>
+                            </div>
+                            <div class="box-out">
+                                <div class="box">
+                                    <video
+                                        controls
+                                        class="video-fluid"
+                                        :alt="work.title"
+                                    >
+                                        <source
+                                            :src="work.video"
+                                            type="video/mp4"
+                                        />
+                                        您的瀏覽器不支持播放此視訊。
+                                    </video>
+                                </div>
                             </div>
                         </div>
-                        <div class="box-out">
-                            <div class="box">
-                                <video
-                                    controls
-                                    class="video-fluid"
-                                    :alt="work.title"
-                                >
-                                    <source
-                                        :src="work.video"
-                                        type="video/mp4"
-                                    />
-                                    您的瀏覽器不支持播放此視訊。
-                                </video>
-                            </div>
-                        </div>
-                    </template> -->
-                    <!-- 第三頁：圖片 -->
-                    <!-- <template v-else-if="index === 2">
+                    </template>
+
+                    <!-- 第三頁：圖片卡片 -->
+                    <template v-else-if="groupIndex === 2">
                         <div id="card">
-                            <div class="gallery-container"> -->
-                    <!-- 使用 v-for 動態渲染卡片 -->
-                    <!-- <div
+                            <div class="gallery-container">
+                                <!-- 動態渲染卡片 -->
+                                <div
                                     v-for="item in gallery"
                                     :key="item.id"
                                     class="gallery-card"
@@ -144,12 +153,11 @@
                                     />
                                     <div class="gallery-text">
                                         <h3>{{ item.title }}</h3>
-                                        <p>{{ item.description }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </template> -->
+                    </template>
                 </div>
             </section>
         </main>
