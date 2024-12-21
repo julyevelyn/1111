@@ -74,90 +74,51 @@
                 <img id="img" src="../img/小恐龍.jpg" alt="小恐龍" />
             </section>
             <section id="app">
-                <!-- 分頁迴圈 -->
                 <div
-                    v-for="(group, groupIndex) in groupedWorks"
-                    :key="groupIndex"
-                    class="group"
+                    v-for="(work, index) in works"
+                    :key="work.title"
+                    class="work"
                 >
-                    <!-- 第一頁：排版 -->
-                    <template v-if="groupIndex === 0">
-                        <div
-                            v-for="(work, index) in group"
-                            :key="work.title"
-                            class="work"
-                        >
-                            <div class="text">
-                                <div class="inner">
-                                    <h3>{{ work.title }}</h3>
-                                    <h4>{{ work.description }}</h4>
-
-                                </div>
-                            </div>
-                            <div class="box-out">
-                                <div class="box">
-                                    <img
-                                        :src="work.image"
-                                        :alt="work.title"
-                                        class="img-fluid"
-                                    />
-                                </div>
+                    <div>
+                        <div class="text">
+                            <div class="inner">
+                                <h3>{{ work.title }}</h3>
+                                <h4>{{ work.description }}</h4>
                             </div>
                         </div>
-                    </template>
-
-                    <!-- 第二頁：影片 -->
-                    <template v-else-if="groupIndex === 1">
-                        <div
-                            v-for="(work, index) in group"
-                            :key="work.title"
-                            class="work"
-                        >
-                            <div class="text">
-                                <div class="inner">
-                                    <h3>{{ work.title}}</h3>
-                                </div>
-                            </div>
-                            <div class="box-out">
-                                <div class="box">
-                                    <video
-                                        controls
-                                        class="video-fluid"
-                                        :alt="work.title"
-                                    >
-                                        <source
-                                            :src="work.video"
-                                            type="video/mp4"
-                                        />
-                                        您的瀏覽器不支持播放此視訊。
-                                    </video>
-                                </div>
-                            </div>
+                        <div class="box">
+                            <img
+                                :src="work.image"
+                                :alt="work.title"
+                                class="img-fluid"
+                            />
                         </div>
-                    </template>
-
-                    <!-- 第三頁：圖片卡片 -->
-                    <template v-else-if="groupIndex === 2">
-                        <div id="card">
-                            <div class="gallery-container">
-                                <!-- 動態渲染卡片 -->
-                                <div
-                                    v-for="item in gallery"
-                                    :key="item.id"
-                                    class="gallery-card"
-                                >
-                                    <img
-                                        :src="item.image_url"
-                                        :alt="item.title"
-                                        class="gallery-image"
-                                    />
-                                    <div class="gallery-text">
-                                        <h3>{{ item.title }}</h3>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    <div>
+                        <div class="text">
+                            <h3>{{ work.title2 }}</h3>
                         </div>
-                    </template>
+                        <video muted class="mp4">
+                            <source :src="work.video" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div
+                        v-for="(item, index) in work.items"
+                        :key="item.title"
+                        class="item"
+                    >
+                        <div class="box">
+                            <img
+                                :src="item.image"
+                                :alt="item.title"
+                                class="img-fluid"
+                            />
+                        </div>
+                        <div class="text"></div>
+                            <h3>{{ item.title }}</h3>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
