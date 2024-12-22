@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
     gsap.registerPlugin(ScrollTrigger);
 
     // **title** //
@@ -45,7 +46,10 @@ document.addEventListener("DOMContentLoaded", function () {
         dataType: "json",
         success: (result) => {
             app.works = result.sort((a, b) => { return a.order - b.order }); // 正確綁定資料
+            console.log(app.works);
             setTimeout(() => {
+                const video = document.querySelector(".mp4");
+                video.load(); // 確保影片資源已加載
                 workAnimation();
             }, 0);
         },
@@ -54,65 +58,82 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 
+
+
     function workAnimation() {
-        const works = document.querySelectorAll(".work");
-        works.forEach((work) => {
+        const first = document.querySelectorAll(".first");
+        first.forEach((first) => {
             let timeline = gsap.timeline({
                 scrollTrigger: {
-                    trigger: work,
-                    start: "top +=60%",
-                    end: "top +=60%",
+                    trigger: first,
+                    start: "top +=80%",
+                    end: "top +=80%",
                     scrub: false,
                     markers: false,
                 },
             });
             timeline
-                .fromTo(work, { opacity: 0 }, { opacity: 1 })
+                .fromTo(first, { opacity: 0 }, { opacity: 1 })
                 .fromTo(
-                    work.querySelector(".text"),
+                    first.querySelector(".text"),
                     { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
                     { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
                     "<"
                 )
                 .fromTo(
-                    work.querySelector(".box"),
+                    first.querySelector(".box"),
                     { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
                     { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
                     "<"
                 );
         });
-    }
 
-    // **backToTop** //
-    gsap.fromTo(
-        "#backToTop",
-        { opacity: 0, y: 0 },
-        {
-            opacity: 1,
-            y: -10,
-            ease: "power1.in",
-            scrollTrigger: {
-                trigger: ".title",
-                start: "bottom top",
-                markers: false,
-                toggleActions: "play none none reverse", // 切换回到顶部时，重置 opacity 和 y 值
-                onEnter: () => {
-                    document.querySelector("#backToTop").style.pointerEvents =
-                        "auto";
+        const second = document.querySelectorAll(".second");
+        second.forEach((second) => {
+            let timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: second,
+                    start: "top +=80%",
+                    end: "top +=80%",
+                    scrub: false,
+                    markers: false,
                 },
-                onLeaveBack: () => {
-                    document.querySelector("#backToTop").style.pointerEvents =
-                        "none";
-                },
-            },
-        }
-    );
-    // 点击按钮回到顶部
-    backToTopButton.addEventListener("click", function () {
-        window.scrollTo({
-            top: 0, // 滚动到顶部
-            behavior: "smooth", // 平滑滚动
-            opacity: 0,
+            });
+            timeline
+                .fromTo(second, { opacity: 0 }, { opacity: 1 })
+                .fromTo(
+                    second.querySelector(".text"),
+                    { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
+                    { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
+                    "<"
+                )
+                .fromTo(
+                    second.querySelector(".mp4"),
+                    { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
+                    { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
+                    "<"
+                );
         });
-    });
+        const third = document.querySelectorAll(".third");
+        third.forEach((third) => {
+            let timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: third,
+                    start: "top +=80%",
+                    end: "top +=80%",
+                    scrub: false,
+                    markers: false,
+                },
+            });
+            timeline
+                .fromTo(third, { opacity: 0 }, { opacity: 1 })
+                .fromTo(
+                    third.querySelector(".item"),
+                    { y: 100, opacity: 0 }, // 出现前：向下偏移 100px，透明
+                    { y: 0, opacity: 1 }, // 出现后：恢复原位，完全显示
+                    "<"
+                )
+
+        });
+    }
 });

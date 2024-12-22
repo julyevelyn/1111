@@ -81,40 +81,35 @@
                 >
                     <!--偶數: 文字在左，圖片在右 -->
                     <template v-if="index % 2 === 0">
-                        <!-- <div class="gradient-overlay2"></div> -->
                         <div class="text">
                             <div class="inner">
                                 <h3>{{ work.title }}</h3>
                                 <h4>{{ work.description }}</h4>
                             </div>
                         </div>
-                        <div class="box-out">
-                            <div class="box">
-                                <img
-                                    :src="work.image"
-                                    :alt="work.title"
-                                    class="img-fluid"
-                                />
-                            </div>
+
+                        <div class="box">
+                            <img
+                                :src="work.image"
+                                :alt="work.title"
+                                class="img-fluid"
+                            />
                         </div>
                     </template>
                     <!--奇數: 圖片在左，文字在右 -->
                     <template v-else>
-                        <!-- <div class="gradient-overlay2"></div> -->
                         <div class="text">
                             <div class="inner">
                                 <h3>{{ work.title }}</h3>
                                 <h4>{{ work.description }}</h4>
                             </div>
                         </div>
-                        <div class="box-out">
-                            <div class="box">
-                                <img
-                                    :src="work.image"
-                                    :alt="work.title"
-                                    class="img-fluid"
-                                />
-                            </div>
+                        <div class="box">
+                            <img
+                                :src="work.image"
+                                :alt="work.title"
+                                class="img-fluid"
+                            />
                         </div>
                     </template>
                 </div>

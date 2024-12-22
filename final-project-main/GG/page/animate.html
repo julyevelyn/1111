@@ -79,7 +79,8 @@
                     :key="work.title"
                     class="work"
                 >
-                    <div>
+                    <!--第一頁-->
+                    <div class="first">
                         <div class="text">
                             <div class="inner">
                                 <h3>{{ work.title }}</h3>
@@ -94,29 +95,31 @@
                             />
                         </div>
                     </div>
-                    <div>
+                    <!--第二頁-->
+                    <div class="second">
                         <div class="text">
                             <h3>{{ work.title2 }}</h3>
                         </div>
-                        <video muted class="mp4">
-                            <source :src="work.video" />
+                        <video class="mp4" controls :poster="work.poster">
+                            <source :src="work.video" :alt="work.title2" />
                             Your browser does not support the video tag.
                         </video>
                     </div>
-                    <div
-                        v-for="(item, index) in work.items"
-                        :key="item.title"
-                        class="item"
-                    >
-                        <div class="box">
-                            <img
-                                :src="item.image"
-                                :alt="item.title"
-                                class="img-fluid"
-                            />
-                        </div>
-                        <div class="text"></div>
-                            <h3>{{ item.title }}</h3>
+                    <!--第三頁-->
+                    <div class="third">
+                        <div
+                            v-for="(item, index) in work.items"
+                            :key="item.title"
+                            class="item"
+                        >
+                            <div class="box">
+                                <img
+                                    :src="item.image"
+                                    :alt="item.title"
+                                    class="img-fluid"
+                                />
+                            </div>
+                            <h3 class="text">{{ item.title }}</h3>
                         </div>
                     </div>
                 </div>

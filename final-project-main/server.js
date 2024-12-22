@@ -32,19 +32,30 @@ const animateDB = DB.create(__dirname + "/animate.db");
 // ])
 
 animateDB.insert([
-    // { order: 1, title: "塵沒", description: "高中畢製畫的動畫，也是我的動畫初體驗，除了學到畫動畫的流程與方式外，也學到如何與組員用良性的方式溝通", video: "../mp4/塵沒.mp4", },
-    // { order: 2, title: "飢餓小恐龍", description: "大二首次嘗試自己畫動畫，因為沒有組員的幫助，因此要更精細的規劃工作流程，製作起來也更加辛苦", video: "../mp4/恐龍.mp4", },
-    // { order: 3, title: "蔬菜大冒險", description: "第一次嘗試製作偶動畫，由於沒有任何經驗，因此前期重拍了很多次", video: "../mp4/偶動畫.mp4", },
     {
-        order: 1, title: "塵沒", description: "高中畢製畫的動畫，也是我的動畫初體驗，除了學到畫動畫的流程與方式外，也學到如何與組員用良性的方式溝通", image: "../img/天秤宮.jpg", title2: "作品內容", video: "../mp4/塵沒.mp4", items: [
+        order: 1, title: "塵沒", description: "高中畢製畫的動畫，也是我的動畫初體驗，除了學到畫動畫的流程與方式外，也學到如何與組員用良性的方式溝通", image: "../img/CD.jpg", title2: "作品內容", video: "../mp4/塵沒.mp4", poster: "../img/灰塵封面.jpg", items: [
             { id: 1, title: "角色色計圖", image: "../img/畢製設定.jpg" },
             { id: 2, title: "海報原圖", image: "../img/海報原圖.jpg" },
             { id: 3, title: "畢製展覽", image: "../img/畢製擺攤.jpg" },
         ]
     },
+    {
+        order: 2, title: "飢餓小恐龍", description: "大二首次嘗試自己畫動畫，因為沒有組員的幫助，因此要更精細的規劃工作流程，製作起來也更加辛苦", image: "../img/小仙子.jpg", title2: "作品內容", video: "../mp4/恐龍.mp4", poster: "../img/恐龍封面.jpg", items: [
+            { id: 1, title: "片尾彩蛋草稿", image: "../img/彩蛋.jpg" },
+            { id: 2, title: "洞穴場景", image: "../img/場景-洞穴.jpg" },
+            { id: 3, title: "海邊場景", image: "../img/場景圖-海邊.jpg" },
+        ]
+    },
+    {
+        order: 2, title: "蔬菜大冒險", description: "第一次嘗試製作偶動畫，由於沒有任何經驗，因此前期重拍了很多次", image: "../img/魔法師.jpg", title2: "作品內容", video: "../mp4/偶動畫.mp4", poster: "../img/主角.JPG", items: [
+            { id: 1, title: "場景", image: "../img/場景.JPG" },
+            { id: 2, title: "村民與魔法師", image: "../img/村民.JPG" },
+            { id: 3, title: "boss", image: "../img/boss.JPG" },
+        ]
+    },
 ])
 
-// DB.insert([{ id: 1, title1: "", des: "", img: "", title2: "", video: "", items: [{ id: 1, img: "", des: "" }] }]);
+// DB.insert([{ id: 1, title1: "", des: "", img: "", title2: "", video: "",poster:"", items: [{ id: 1, img: "", des: "" }] }]);
 
 server.get("/draw", (req, res) => {
     //DB
