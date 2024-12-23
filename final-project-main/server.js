@@ -58,15 +58,15 @@ const homeDB = DB.create(__dirname + "/home.db");
 
 // DB.insert([{ id: 1, title1: "", des: "", img: "", title2: "", video: "",poster:"", items: [{ id: 1, img: "", des: "" }] }]);
 
-homeDB.insert([
-    { order: 1, src: './img/天秤宮.jpg', alt: '天秤宮' },
-    { order: 2, src: './img/龍.JPG', alt: '龍' },
-    { order: 3, src: './img/兵長賀圖.jpg', alt: '兵長賀圖' },
-    { order: 4, src: './img/武器彩圖.jpg', alt: '武器彩圖' },
-    { order: 5, src: './img/房子1.jpg', alt: '房子1' },
-    { order: 6, src: './img/石頭.jpg', alt: '石頭' },
-    { order: 7, src: './img/灰塵封面.jpg', alt: '灰塵封面' },
-])
+// homeDB.insert([
+//     { order: 1, src: './img/天秤宮.jpg', alt: '天秤宮' },
+//     { order: 2, src: './img/龍.JPG', alt: '龍' },
+//     { order: 3, src: './img/兵長賀圖.jpg', alt: '兵長賀圖' },
+//     { order: 4, src: './img/武器彩圖.jpg', alt: '武器彩圖' },
+//     { order: 5, src: './img/房子1.jpg', alt: '房子1' },
+//     { order: 6, src: './img/石頭.jpg', alt: '石頭' },
+//     { order: 7, src: './img/灰塵封面.jpg', alt: '灰塵封面' },
+// ])
 server.get("/draw", (req, res) => {
     //DB
     drawDB.find({}).then((results) => {
