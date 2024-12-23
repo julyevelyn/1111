@@ -32,6 +32,3 @@ node_modules/*
 *.exe
 *.out
 *.app
-
-# 排除特定資料夾的影片
-*.mp4
