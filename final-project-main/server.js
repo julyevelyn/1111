@@ -28,8 +28,8 @@ const homeDB = DB.create(__dirname + "/home.db");
 //     { order: 1, title: "武士刀katana", description: "第一次用maya製作武器，花了很多時間研究製作武士刀模型的教程，也嘗試用maya貼膜貼出武士刀破舊的感覺", image: "../img/武器彩圖.jpg", },
 //     { order: 2, title: "建築練習", description: "第一次製作建築，並且嘗試用sp製作材質紋理", image: "../img/房子1.jpg", },
 //     { order: 3, title: "麥田女孩", description: "跟著教程學習了blender的角色建模", image: "../img/麥田女孩.png" },
-//     { order: 4, title: "教堂建築", description: "嘗試用blender製作較為複雜的哥德教堂，屋頂花了特別多時間研究製作方式", image: "../img/教堂.JPG" },
-//     { order: 5, title: "漂浮石頭", description: "學習用blender雕刻石頭，並且練習了打光", image: "../img/石頭.JPG" },
+//     { order: 4, title: "教堂建築", description: "嘗試用blender製作較為複雜的哥德教堂，屋頂花了特別多時間研究製作方式", image: "../img/教堂.jpg" },
+//     { order: 5, title: "漂浮石頭", description: "學習用blender雕刻石頭，並且練習了打光", image: "../img/石頭.jpg" },
 // ])
 
 // animateDB.insert([
