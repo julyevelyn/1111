@@ -13,6 +13,7 @@ const DB = require("nedb-promises");
 const drawDB = DB.create(__dirname + "/draw.db");
 const _3DDB = DB.create(__dirname + "/3D.db");
 const animateDB = DB.create(__dirname + "/animate.db");
+const homeDB = DB.create(__dirname + "/home.db");
 
 // drawDB.insert([
 //     {order:1,title: "天秤宮",description: "高中時畫的作品，第一次嘗試複雜的背景繪製",image: "../img/天秤宮.jpg",},
@@ -57,6 +58,15 @@ const animateDB = DB.create(__dirname + "/animate.db");
 
 // DB.insert([{ id: 1, title1: "", des: "", img: "", title2: "", video: "",poster:"", items: [{ id: 1, img: "", des: "" }] }]);
 
+homeDB.insert([
+    { order: 1, src: './img/天秤宮.jpg', alt: '天秤宮' },
+    { order: 2, src: './img/龍.JPG', alt: '龍' },
+    { order: 3, src: './img/兵長賀圖.jpg', alt: '兵長賀圖' },
+    { order: 4, src: './img/武器彩圖.jpg', alt: '武器彩圖' },
+    { order: 5, src: './img/房子1.jpg', alt: '房子1' },
+    { order: 6, src: './img/石頭.jpg', alt: '石頭' },
+    { order: 7, src: './img/灰塵封面.jpg', alt: '灰塵封面' },
+])
 server.get("/draw", (req, res) => {
     //DB
     drawDB.find({}).then((results) => {
@@ -82,6 +92,17 @@ server.get("/3D", (req, res) => {
 server.get("/animate", (req, res) => {
     //DB
     animateDB.find({}).then((results) => {
+        if (results != null) {
+            res.send(results);
+        } else {
+            res.send("Error!");
+        }
+    });
+});
+
+server.get("/home", (req, res) => {
+    //DB
+    homeDB.find({}).then((results) => {
         if (results != null) {
             res.send(results);
         } else {

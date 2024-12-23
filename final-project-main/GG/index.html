@@ -8,12 +8,16 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/3.11.3/plugins/animation.gsap.min.js"></script>
+        <!-- Vue -->
+        <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
         <!-- Boostrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
             rel="stylesheet"
         />
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <!-- Theme -->
         <link rel="stylesheet" href="./css/global.css" />
         <link rel="stylesheet" href="./css/home.css" />
@@ -83,24 +87,67 @@
                     </p>
                 </div>
             </section>
-
-            <section class="work">
-                <h2>作品精選</h2>
-                <div class="box">
-                    <button class="indicator" id="left">&lt;</button>
-                    <div class="box-img">
-                        <img src="./img/天秤宮.jpg" alt="天秤宮" />
-                    </div>
-                    <div class="box-img">
-                        <img src="./img/兵長賀圖.jpg" alt="兵長賀圖" />
-                    </div>
-                    <button class="indicator" id="right">&gt;</button>
+            <div id="app">
+                <div class="work">
+                    <h1>作品精選</h1>
                 </div>
-                <div class="captions">
-                    <button></button>
-                    <button></button>
+                <div
+                    id="mycarousel"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                    data-bs-interval="2000"
+                >
+                    <!-- 指示器 -->
+                    <div class="carousel-indicators">
+                        <button
+                            v-for="(img, index) in items"
+                            :key="index"
+                            type="button"
+                            data-bs-target="#mycarousel"
+                            :data-bs-slide-to="index"
+                            :class="{ active: index === 0 }"
+                            :aria-current="index === 0 ? 'true' : null"
+                            :aria-label="'Slide ' + (index + 1)"
+                        ></button>
+                    </div>
+                    <!-- 項目 -->
+                    <div class="carousel-inner">
+                        <div
+                            v-for="(img, index) in items"
+                            class="carousel-item"
+                            :key="index"
+                            :class="{ active: index === 0 }"
+                        >
+                            <img :src="img.src" :alt="img.alt" loading="lazy" />
+                        </div>
+                    </div>
+                    <!-- 翻頁按鈕 -->
+                    <button
+                        class="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#mycarousel"
+                        data-bs-slide="prev"
+                    >
+                        <span
+                            class="carousel-control-prev-icon"
+                            aria-hidden="true"
+                        ></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                        class="carousel-control-next"
+                        type="button"
+                        data-bs-target="#mycarousel"
+                        data-bs-slide="next"
+                    >
+                        <span
+                            class="carousel-control-next-icon"
+                            aria-hidden="true"
+                        ></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-            </section>
+            </div>
 
             <section class="social">
                 <div class="content">
