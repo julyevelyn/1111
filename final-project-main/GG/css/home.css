@@ -99,6 +99,26 @@
     object-position: center;
 }
 
+.carousel .carousel-control-prev {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 5px;
+    background-color: rgba(58, 58, 58, 0.5);
+    backdrop-filter: blur(50px);
+}
+
+.carousel .carousel-control-next {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 5px;
+    background-color: rgba(58, 58, 58, 0.5);
+    backdrop-filter: blur(50px);
+}
+
 /*///////////////////////////////////////////////////////////////////////social///////////////////////////////////////////////////////////////////////////////////////*/
 
 .social {
