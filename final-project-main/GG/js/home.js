@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let title = gsap.timeline({
         scrollTrigger: {
             trigger: ".title", // 触发动画的元素
-            start: "top top", // 起始位置：元素顶部与视口顶部对齐时
-            end: "+=100%", // 滚动到多长时间后结束
+            start: "top top", // 起始位置：元素顶部与视口顶部对齐时 top top第一個是指start 第二個是scroller
+            end: "+=100%", // 滚动到多长时间后结束 從start開始算+自身100%
             pin: true, // 固定第一个画面
             pinSpacing: true, // 保留滚动占位，确保第二个画面不过早上移
             scrub: true, // 滚动时动画会同步滚动
