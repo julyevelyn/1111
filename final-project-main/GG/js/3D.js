@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         success: (result) => {
             app.works = result.sort((a, b) => { return a.order - b.order }); // 正確綁定資料
             setTimeout(() => {
+                // 函數
                 workAnimation();
             }, 0);
         },
